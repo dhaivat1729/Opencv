@@ -1,0 +1,5 @@
+cmake_minimum_required( VERSION 2.8 )
+project(BlendingTwoImages)
+find_package(OpenCV REQUIRED)
+add_executable(BlendingTwoImages BlendingTwoImages.cpp)
+target_link_libraries(BlendingTwoImages ${OpenCV_LIBS})
