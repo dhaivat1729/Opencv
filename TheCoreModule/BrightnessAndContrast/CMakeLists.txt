@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+project( BrightnessAndContrast )
+find_package(OpenCV REQUIRED)
+add_executable(BrightnessAndContrast BrightnessAndContrast.cpp)
+target_link_libraries( BrightnessAndContrast ${OpenCV_LIBS})

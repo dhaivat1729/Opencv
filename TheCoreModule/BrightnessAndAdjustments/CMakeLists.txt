@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+project( BrightnessAndContrats )
+find_package(OpenCV REQUIRED)
+add_executable(BrightnessAndContrats)
+target_link_libraries( BrightnessAndContrats ${OpenCV_LIBS})
