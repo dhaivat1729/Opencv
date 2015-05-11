@@ -6,24 +6,25 @@
 using namespace std;
 using namespace cv;
 
-int main ( int argc, char **argv){
+int main( int argc, char** argv) {
 
-    if( argc != 2) {
-        cout << " Usage: LoadAndDisplayImage <Image path>" << endl;
+    if(argc!=2){
+        cout << "Usage: LoadAndDisplayImage <Imagepath>" << endl;
         return -1;
     }
 
     Mat image;
-    image = imread(argv[1], CV_LOAD_IMAGE_COLOR);
+    image = imread(argv[1],CV_LOAD_IMAGE_COLOR);
 
-    if ( !image.data ){
-        cout << "No valid image data! " << endl;
+    if(!image.data){
+
+        cout << "Not valid image file!" << endl;
         return -1;
     }
 
-    namedWindow("Load and Display Image", WINDOW_AUTOSIZE);
-    imshow("Load and Display Image", image);
-
+    namedWindow("Load and Display Image",WINDOW_AUTOSIZE);
+    imshow("Load and Display Image",image);
     waitKey(0);
     return 0;
+
 }
