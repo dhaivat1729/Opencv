@@ -9,11 +9,11 @@
 /home/dhaivat666/Opencv codes/TheCoreModule/BrightnessAndContrast/BrightnessAndContrast.cpp
 stdio.h
 -
-cv.h
--
 opencv2/core/core.hpp
 -
 opencv2/highgui/highgui.hpp
+-
+cv.h
 -
 iostream
 -
