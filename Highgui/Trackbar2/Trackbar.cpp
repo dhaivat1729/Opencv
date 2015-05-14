@@ -12,7 +12,7 @@ using namespace cv;
 Mat image, final;
 const int alpha_max = 30;
 int alpha = 0; // for brightness
-double brightnesss = 0.0;
+double brightness = 0.0;
 const int beta_max = 30;
 double contrast = 0.0;
 int beta = 0; // for contrast
