@@ -33,7 +33,6 @@ int main(int argc, char** argv){
         return -1;
     }
 
-    Mat image1, image2, final image;
     image1 = imread(argv[1], CV_LOAD_IMAGE_COLOR);
     image2 = imread(argv[2], CV_LOAD_IMAGE_COLOR);
     final.create(image1.size(), image1.tyep());
@@ -50,7 +49,7 @@ int main(int argc, char** argv){
     namedWindow("Linear blend!", CV_WINDOW_AUTOSIZE);
 
     // Create trackbar
-    trackbar("Alpha value", "Linear blend!", &alpha_slider, alpha_slider_max, on_trackbar);
+    createTrackbar("Alpha value", "Linear blend!", &alpha_slider, alpha_slider_max, on_trackbar);
     waitKey(0);
     return 0;
 }
