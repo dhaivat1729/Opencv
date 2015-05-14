@@ -13,7 +13,7 @@ Mat image, final;
 const int alpha_max = 30;
 int alpha = 0; // for brightness
 double brightness = 0.0;
-const int beta_max = 30;
+const int beta_max = 3000;
 double contrast = 0.0;
 int beta = 0; // for contrast
 
@@ -27,7 +27,7 @@ void on_trackbar( int,void* ){
         for ( int x = 0; x < image.cols; x++){
             for ( int c = 0; c <3; c++){
 
-                final.at<Vec3b>(y,x)[c] = saturate_cast<uchar> ( contrast * image.at<Vec3b>(y,x)[c] + brightness);
+                final.at<Vec3b>(y,x)[c] = saturate_cast<uchar> ( brightness * image.at<Vec3b>(y,x)[c] + contrast);
             }
         }
     }
@@ -55,8 +55,8 @@ int main( int argc, char** argv){
 
     // Create trackbars to control brightness and contrast
 
-    createTrackbar("Brightness: ", "Final image!", &alpha, alpha_max, on_trackbar);
-    createTrackbar("Contrast: ", "Final image!", &beta, beta_max, on_trackbar);
+    createTrackbar("Contrast: ", "Final image!", &alpha, alpha_max, on_trackbar);
+    createTrackbar("Brightness: ", "Final image!", &beta, beta_max, on_trackbar);
 
     waitKey(0);
     return 0;
