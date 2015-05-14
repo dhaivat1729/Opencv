@@ -14,7 +14,7 @@ double alpha;
 double beta;
 
 // Image variables
-Mat image1, image2, final image;
+Mat image1, image2, final;
 
 // Callback function on_trackbar
 void on_trackbar( int, void*){
