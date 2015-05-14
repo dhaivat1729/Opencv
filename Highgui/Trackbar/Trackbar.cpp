@@ -35,7 +35,7 @@ int main(int argc, char** argv){
 
     image1 = imread(argv[1], CV_LOAD_IMAGE_COLOR);
     image2 = imread(argv[2], CV_LOAD_IMAGE_COLOR);
-    final.create(image1.size(), image1.tyep());
+    final.create(image1.size(), image1.type());
 
     if ( !image1.data || !image2.data){
 
