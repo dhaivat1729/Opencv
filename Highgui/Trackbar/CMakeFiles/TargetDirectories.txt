@@ -1,1 +1,0 @@
-/home/dhaivat666/Opencv codes/Highgui/Trackbar/CMakeFiles/Trackbar.dir
