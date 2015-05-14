@@ -36,7 +36,7 @@ int main(int argc, char** argv){
     Mat image1, image2, final image;
     image1 = imread(argv[1], CV_LOAD_IMAGE_COLOR);
     image2 = imread(argv[2], CV_LOAD_IMAGE_COLOR);
-    final.create(image.size(), image.tyep());
+    final.create(image1.size(), image1.tyep());
 
     if ( !image1.data || !image2.data){
 
