@@ -41,8 +41,21 @@ const int median_parameter_max = 100;
 // Median smoothing trackbar function
 
 void median_trackbar(int, void*){
+
     medianBlur(src, dst3, 2 * median_parameter + 1);
     imshow("Median filter: ", dst3);
+}
+
+// Bilateral filter
+int bilateral_parameter = 1;
+const int bilateral_parameter_max = 100;
+
+// Bilateral smoothing trackbar function
+void bilateral_trackbar(int, void*){
+
+    bilateralFilter(src, dst4, 2 * bilateral_parameter + 1, (2 * bilateral_parameter + 1)*2, (2 * bilateral_parameter + 1)/2);
+    imshow("Bilateral filter: ", dst4);
+
 }
 
 int main( int argc, char** argv){
@@ -73,6 +86,9 @@ int main( int argc, char** argv){
     namedWindow("Median filter: ", CV_WINDOW_AUTOSIZE);
     createTrackbar("Median blur parameter: ", "Median filter: ", &median_parameter, median_parameter_max, median_trackbar);
 
+    // Window and trackbar for bilateral smotthing
+    namedWindow("Bilateral window: ",CV_WINDOW_AUTOSIZE);
+    createTrackbar("Bilateral paramter: ", "Bilateral filter: ", &bilateral_parameter, bilateral_parameter_max, bilateral_trackbar);
     waitKey(0);
     return 0;
 
