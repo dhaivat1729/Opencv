@@ -24,13 +24,13 @@ void blur_trackbar( int, void*){
 
 // Gaussian blur parameters:
 int gaussian_parameter = 1;
-const gaussian_parameter_max = 100;
+const int gaussian_parameter_max = 100;
 
 // Gaussian smoothing trackbar function
 
 void gaussian_trackbar(int, void*){
 
-    GaussianBlur(src, dst2, Size(2 * gaussian_parameter_max + 1, 2 * gaussian_parameter_max + 1), 0, 0);
+    GaussianBlur(src, dst2, Size(2 * gaussian_parameter + 1, 2 * gaussian_parameter + 1), 0, 0);
     imshow("Gaussian filter: ", dst2);
 }
 
@@ -56,7 +56,7 @@ int main( int argc, char** argv){
 
     // Window and trackbar for gaussian smoothing
     namedWindow("Gaussian filter: ", CV_WINDOW_AUTOSIZE);
-    createTrackbar("Gaussian parameter: ", "Gaussian filter: ", &gaussian_parameter, &gaussian_parameter_max, gaussian_trackbar);
+    createTrackbar("Gaussian parameter: ", "Gaussian filter: ", &gaussian_parameter, gaussian_parameter_max, gaussian_trackbar);
     waitKey(0);
     return 0;
 
