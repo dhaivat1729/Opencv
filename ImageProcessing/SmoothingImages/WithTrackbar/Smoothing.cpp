@@ -34,6 +34,17 @@ void gaussian_trackbar(int, void*){
     imshow("Gaussian filter: ", dst2);
 }
 
+// Median filter parameters
+int median_parameter = 1;
+const int median_parameter_max = 100;
+
+// Median smoothing trackbar function
+
+void median_trackbar(int, void*){
+    medianBlur(src, dst3, 2 * median_parameter + 1);
+    imshow("Median filter: ", dst3);
+}
+
 int main( int argc, char** argv){
 
     if(argc != 2){
@@ -57,6 +68,11 @@ int main( int argc, char** argv){
     // Window and trackbar for gaussian smoothing
     namedWindow("Gaussian filter: ", CV_WINDOW_AUTOSIZE);
     createTrackbar("Gaussian parameter: ", "Gaussian filter: ", &gaussian_parameter, gaussian_parameter_max, gaussian_trackbar);
+
+    // Window and trackbar for median smoothing
+    namedWindow("Median filter: ", CV_WINDOW_AUTOSIZE);
+    createTrackbar("Median blur parameter: ", "Median filter: ", &median_parameter, median_parameter_max, median_trackbar);
+
     waitKey(0);
     return 0;
 
