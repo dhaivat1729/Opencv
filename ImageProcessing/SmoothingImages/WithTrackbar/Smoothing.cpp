@@ -22,6 +22,18 @@ void blur_trackbar( int, void*){
     imshow("Normalized box filter: ", dst1);
 }
 
+// Gaussian blur parameters:
+int gaussian_parameter = 1;
+const gaussian_parameter_max = 100;
+
+// Gaussian smoothing trackbar function
+
+void gaussian_trackbar(int, void*){
+
+    GaussianBlur(src, dst2, Size(2 * gaussian_parameter_max + 1, 2 * gaussian_parameter_max + 1), 0, 0);
+    imshow("Gaussian filter: ", dst2);
+}
+
 int main( int argc, char** argv){
 
     if(argc != 2){
@@ -38,8 +50,13 @@ int main( int argc, char** argv){
         return -1;
     }
 
+    // Window and trackbar for Normalized box filter
     namedWindow("Normalized box filter: ", CV_WINDOW_AUTOSIZE);
     createTrackbar("Blur parameter: ", "Normalized box filter: ", &blur_parameter, blur_parameter_max, blur_trackbar);
+
+    // Window and trackbar for gaussian smoothing
+    namedWindow("Gaussian filter: ", CV_WINDOW_AUTOSIZE);
+    createTrackbar("Gaussian parameter: ", "Gaussian filter: ", &gaussian_parameter, &gaussian_parameter_max, gaussian_trackbar);
     waitKey(0);
     return 0;
 
