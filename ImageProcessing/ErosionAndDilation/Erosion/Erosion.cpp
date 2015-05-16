@@ -10,9 +10,26 @@ using namespace cv;
 
 Mat image, final;
 
-int erosion_elem;
+// global variables
 int erosion_type;
-int erosion_size = 3;
+int erosion_elem = 0;
+const int erosion_elem_max = 2;
+int erosion_size = 1;
+const int erosion_size_max = 15;
+
+// Trackbar for erosion
+void erosion( int, void* ){
+
+    if( erosion_elem == 0 ){ erosion_type = MORPH_RECT; }
+    else if(erosion_elem == 1){ erosion_type = MORPH_CROSS; }
+    else if(erosion_elem == 2){ erosion_type = MORPH_ELLIPSE; }
+
+    // Defining structuring element
+    Mat element = getStructuringElement( erosion_type, Size(2*erosion_size + 1, 2*erosion_size + 1), Point(-1, -1));
+    erode(image, final, element);
+    imshow("Erosion: ", final);
+
+}
 
 int main( int argc, char** argv){
 
@@ -30,17 +47,16 @@ int main( int argc, char** argv){
         return -1;
     }
 
-    cout << "Provide erosion element: \n 0. MORPH_RECT \n 1. MORPH_CROSS \n 2. MORPH_ELLIPSE " << endl;
-    cin >> erosion_elem;
-    if(erosion_elem == 0) { erosion_type = MORPH_RECT; }
-    else if(erosion_elem == 1){ erosion_type = MORPH_CROSS; }
-    else if(erosion_elem == 2){ erosion_type = MORPH_ELLIPSE; }
+    char* Erosion_element = "Provide erosion element: \n 0. MORPH_RECT \n 1. MORPH_CROSS \n 2. MORPH_ELLIPSE ";
+    char* Erosion_size = "Erosion size: ";
+    namedWindow("Erosion: ", CV_WINDOW_AUTOSIZE);
 
-    // Defining structural element
-    Mat element = getStructuringElement( erosion_type, Size(erosion_size, erosion_size), Point(-1, -1));
-    erode(image, final, element);
-    namedWindow("Erosion: ",CV_WINDOW_AUTOSIZE);
-    imshow("Erosion: ", final);
+    // trackbar for erosion element
+    createTrackbar(Erosion_element, "Erosion: ", &erosion_elem, erosion_elem_max, erosion);
+
+    // trackbar for erosion size
+    createTrackbar(Erosion_size, "Erosion: ", &erosion_size, erosion_size_max, erosion);
+
     waitKey(0);
     return 0;
 }
