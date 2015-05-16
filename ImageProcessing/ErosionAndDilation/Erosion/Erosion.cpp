@@ -30,13 +30,8 @@ int main( int argc, char** argv){
         return -1;
     }
 
-    cout << "Provide erosion element: \n 0. MORPH_RECT \n 1. MORPH_CROSS \n  2. MORPH_ELLIPSE " << endl;
+    cout << "Provide erosion element: \n 0. MORPH_RECT \n 1. MORPH_CROSS \n 2. MORPH_ELLIPSE " << endl;
     cin >> erosion_elem;
-    if ( erosion_elem != 0 || erosion_elem != 1 || erosion_elem != 2){
-        cout << "No valid erosion type!" << endl;
-        return -1;
-    }
-
     if(erosion_elem == 0) { erosion_type = MORPH_RECT; }
     else if(erosion_elem == 1){ erosion_type = MORPH_CROSS; }
     else if(erosion_elem == 2){ erosion_type = MORPH_ELLIPSE; }
