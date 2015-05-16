@@ -9,6 +9,26 @@ using namespace cv;
 
 Mat image, final;
 
+// global variables
+
+int dilation_elem = 0;
+const int dilation_elem_max = 2;
+int dilation_type;
+int dilation_size = 1;
+const int dilation_size_max = 10;
+
+// Trackbar callback funtion
+void dilation( int, void*){
+
+    if ( dilation_elem == 0){ dilation_type = MORPH_RECT; }
+    else if( dilation_elem == 1) { dilation_type = MORPH_CROSS; }
+    else if ( dilation_elem == 2) { dilation_type = MORPH_ELLIPSE; }
+
+    Mat element = getStructuringElement(dilation_type, Size(2*dilation_size + 1, 2*dilation_size + 1), Point(-1, -1));
+    dilate(image, final, element);
+    imshow("Dilation: ", final);
+}
+
 int main( int argc, char** argv){
 
     if(argc != 2){
@@ -25,23 +45,17 @@ int main( int argc, char** argv){
         return -1;
     }
 
-    int dilation_elem;
-    int dilation_type;
-    int dilation_size = 2;
-    cout << "Enter dilation element: \n 0. MORHP_RECT \n 1. MORPH_CROSS \n 2. MORPH_ELLIPSE" << endl;
-    cin >> dilation_elem;
-    if (dilation_elem == 0){ dilation_type = MORPH_RECT; }
-    else if (dilation_elem == 1){ dilation_type = MORPH_CROSS; }
-    else if (dilation_elem == 2){ dilation_type = MORPH_ELLIPSE; }
-    else {
-        cout << "Invalid dilation type! " << endl;
-        return -1;
-    }
+    // Trackbar names
+    char* Dilation_element = "Choose dilation type: \n 0. MORPH_RECT \n 1. MORPH_CROSS \n 2. MORPH_ELLIPSE";
+    char* Dilation_size = "Vary dilation mask size: ";
 
-    Mat element = getStructuringElement(dilation_type, Size(2*dilation_size + 1, 2*dilation_size + 1),Point(-1, -1));
-    dilate(image, final, element);
+    // Window
     namedWindow("Dilation: ", CV_WINDOW_AUTOSIZE);
-    imshow("Dilation: ", final);
+
+    // trackbars
+    createTrackbar(Dilation_element, "Dilation: ", &dilation_elem, dilation_elem_max, dilation);
+    createTrackbar(Dilation_size, "Dilation: ", &dilation_size, dilation_size_max, dilation);
+
     waitKey(0);
     return 0;
 }
