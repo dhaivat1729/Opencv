@@ -36,7 +36,7 @@ int main(int argc, char** argv){
         return -1;
     }
 
-    src = imread(argv[1], Cv_LOAD_IMAGE_COLOR);
+    src = imread(argv[1], CV_LOAD_IMAGE_COLOR);
 
     if(!src.data){
 
