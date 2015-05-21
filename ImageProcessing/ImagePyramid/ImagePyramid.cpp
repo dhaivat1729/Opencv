@@ -11,7 +11,7 @@ int main(int argc, char** argv){
 
     if(argc!= 2){
 
-        cout << "Usage: ImagePyramid <image path> " << endl
+        cout << "Usage: ImagePyramid <image path> " << endl;
         return -1;
     }
 
@@ -28,7 +28,7 @@ int main(int argc, char** argv){
     dst = tmp;
 
     // Creating a window
-    namedWidow("Image Pyramids: ", CV_WINDOW_AUTOSIZE);
+    namedWindow("Image Pyramids: ", CV_WINDOW_AUTOSIZE);
     imshow("Image Pyramids: ", dst);
 
     while( true ){
@@ -45,11 +45,11 @@ int main(int argc, char** argv){
         }
 
         else if((char)c == 'd'){
-            pryDown(tmp, dst, Size(tmp*cols/2, tmp*rows/2));
+            pyrDown(tmp, dst, Size(tmp.cols/2, tmp.rows/2));
             printf("** Zoom out: Image / 2 \n");
         }
 
         imshow("Image Pyramids: ", dst);
         tmp = dst;
-
+    }
 }
