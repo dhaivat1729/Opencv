@@ -1,0 +1,5 @@
+cmake_minimum_required( VERSION 2.8 )
+projecT(ImagePyramid)
+find_package(OpenCV REQUIRED)
+add_executable(ImagePyramid ImagePyramid.cpp)
+target_link_libraries(ImagePyramid ${OpenCV_LIBS})
