@@ -11,7 +11,7 @@ int main(int argc, char** argv){
 
     if(argc != 2){
 
-        cout << "Usage: LinearFilters <image path>" << endl
+        cout << "Usage: LinearFilters <image path>" << endl;
         return -1;
     }
 
@@ -26,11 +26,11 @@ int main(int argc, char** argv){
     dst.create(src.size(), src.type());
     Mat mask = (Mat_<char>(3,3) << 0,0,5,
                                     0,5,0,
-                                    5,0,0)
+                                    5,0,0);
 
     filter2D(src, dst, src.depth(), mask);
     namedWindow("Final image: ", CV_WINDOW_AUTOSIZE);
     imshow("Final image: ", dst);
-    waitKey(0)
+    waitKey(0);
     return 0;
 }
