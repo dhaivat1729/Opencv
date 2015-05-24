@@ -1,0 +1,1 @@
+/home/dhaivat666/Opencv codes/ImageProcessing/LinearFilters/CMakeFiles/LinearFilters.dir
