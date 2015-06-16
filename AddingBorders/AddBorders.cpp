@@ -13,7 +13,7 @@ int top, bottom, left, right;
 int borderType;
 Scalar value;
 char* window_name = "copyMakeBorder Demo";
-RNG rng(12345);
+RNG rng(12345); // RNG is nothing but random number generator. Used to generate the random border color.
 
 /// Main function
 int main(int argc, char** argv){
@@ -51,8 +51,17 @@ int main(int argc, char** argv){
             break;
         }
         else if((char)c == 'c'){
-            
+            border_type = BORDER_CONSTANT;
         }
+        else if((char)c == 'r'){
+            border_type = BORDER_REPLICATE;
+        }
+
+        value = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.scalar(0, 255));
+        copyMakeBorder(src, dst, top, bottom, left, right, bordertype, value);
+        imshow(window_name, dst);
     }
+
+    return 0;
 
 }
