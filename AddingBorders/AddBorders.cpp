@@ -1,5 +1,6 @@
+#include <cv.h>
 #include <opencv2/core/core.hpp>
-#include <opencv2/imgproc/imgproc.cpp>
+#include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 #include <stdio.h>
@@ -9,7 +10,7 @@ using namespace cv;
 
 /// Global variables
 Mat src, dst;
-int top, bottom, left, right;
+int top, bottom, Left, Right;
 int borderType;
 Scalar value;
 char* window_name = "copyMakeBorder Demo";
@@ -34,13 +35,13 @@ int main(int argc, char** argv){
     cout << "Press 'ESC' to exit the program. \n" << endl;
 
     // Create window
-    createWindow(window_name, CV_WINDOW_AUTOSIZE);
+    namedWindow(window_name, CV_WINDOW_AUTOSIZE);
 
     /// Initialize arguments for the filter
     top = (int)(0.05 * src.rows);
-    left = (int)(0.05 * src.cols);
+    Left = (int)(0.05 * src.cols);
     bottom = (int)(0.05 * src.rows);
-    right = (int)(0.05 * src.cols);
+    Right = (int)(0.05 * src.cols);
     dst = src;
 
     imshow(window_name, dst);
@@ -51,14 +52,14 @@ int main(int argc, char** argv){
             break;
         }
         else if((char)c == 'c'){
-            border_type = BORDER_CONSTANT;
+            borderType = BORDER_CONSTANT;
         }
         else if((char)c == 'r'){
-            border_type = BORDER_REPLICATE;
+            borderType = BORDER_REPLICATE;
         }
 
-        value = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.scalar(0, 255));
-        copyMakeBorder(src, dst, top, bottom, left, right, bordertype, value);
+        value = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+        copyMakeBorder(src, dst, top, bottom, Left, Right, borderType, value);
         imshow(window_name, dst);
     }
 
