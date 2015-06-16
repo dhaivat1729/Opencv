@@ -1,4 +1,4 @@
-cmake_minimim_required( VERSION 2.8)
+cmake_minimum_required( VERSION 2.8)
 projecT(AddBorders)
 find_package(OpenCV REQUIRED)
 add_executable(AddBorders AddBorders.cpp)
